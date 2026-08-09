@@ -1,0 +1,23 @@
+{
+  "collection_id": "example-collection",
+  "stage": "research",
+  "date": "2026-01-05",
+  "trigger_reason": "new_opportunity",
+  "source_collection_id": null,
+  "niche": "Example niche description",
+  "target_customer": "Example target customer description",
+  "why_this_niche": "Example reasoning for why this niche was chosen",
+  "product_ideas": [
+    "Example product idea one",
+    "Example product idea two"
+  ],
+  "keywords": [
+    "example keyword one",
+    "example keyword two"
+  ],
+  "competition_level": "Example competition assessment",
+  "marketing_angles": [
+    "Example marketing angle one"
+  ],
+  "next_action": "proceed_to_design"
+}

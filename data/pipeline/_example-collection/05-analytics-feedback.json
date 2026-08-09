@@ -1,0 +1,15 @@
+{
+  "collection_id": "example-collection",
+  "stage": "analytics-feedback",
+  "date": "2026-02-07",
+  "evidence_tier": 4,
+  "verdict": "winner",
+  "verdict_basis": "Concept A outperformed the collection average by 2.3x in revenue for 3 consecutive weeks (weeks of Jan 17, Jan 24, Jan 31).",
+  "likely_cause": "unclear",
+  "recommendation": {
+    "text": "Open a winner_expansion research brief carrying forward Concept A's converting search terms and price point.",
+    "based_on": "Weekly reports 2026-01-17 through 2026-01-31 in reports/analytics/example-business/",
+    "reversibility": "easy",
+    "recheck_at": "2026-03-07"
+  }
+}

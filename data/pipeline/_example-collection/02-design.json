@@ -1,0 +1,18 @@
+{
+  "collection_id": "example-collection",
+  "stage": "design",
+  "date": "2026-01-08",
+  "based_on": "01-research.json",
+  "concepts": [
+    { "concept_id": "concept-a", "name": "Example Concept A", "description": "Example description of concept A" },
+    { "concept_id": "concept-b", "name": "Example Concept B", "description": "Example description of concept B" }
+  ],
+  "chosen_concepts": ["concept-a", "concept-b"],
+  "design_files": [
+    "designs/example-collection/concept-a.png",
+    "designs/example-collection/concept-b.png"
+  ],
+  "qa_status": "passed",
+  "qa_notes": "Render-verified safe-zone check passed for both concepts against the actual print area.",
+  "next_action": "proceed_to_listing"
+}

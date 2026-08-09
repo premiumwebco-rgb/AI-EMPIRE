@@ -1,0 +1,32 @@
+{
+  "business_id": "willowgiftworks-etsy",
+  "known_fixed_costs": {
+    "printify_subscription": 0,
+    "printify_premium": 0,
+    "other_tools": 0,
+    "note": "Printify Premium not subscribed, per marketing/halloween-pricing-model.md's recommendation to skip until roughly 12 bags/month. No other paid tools currently logged."
+  },
+  "known_variable_costs_per_unit": {
+    "production_cost": 9.48,
+    "shipping_first_item": 3.99,
+    "shipping_additional_item": 2.09,
+    "source": "marketing/halloween-pricing-model.md"
+  },
+  "cash_position": {
+    "printify_balance": 0,
+    "payment_method_on_file": true,
+    "note": "Re-verified 2026-08-07: Visa ending 8389 (exp 07/28) is on file and is the only saved card, so it's the one Printify will charge. Printify Balance itself is still $0, which is fine — Printify charges the card directly when balance is insufficient. Fulfillment path is not yet end-to-end tested with a real order. See data/state/missions.json sq-01."
+  },
+  "revenue_to_date": 0,
+  "profit_to_date": 0,
+  "cac": null,
+  "cac_note": "No marketing spend and no sales yet — CAC is undefined, not zero.",
+  "roi_by_business": [
+    {
+      "business_id": "willowgiftworks-etsy",
+      "status": "too_early_to_rank",
+      "note": "Only business currently tracked with real numbers. Cross-business best/worst ranking requires at least two businesses with real revenue history."
+    }
+  ],
+  "last_updated": "2026-08-07"
+}

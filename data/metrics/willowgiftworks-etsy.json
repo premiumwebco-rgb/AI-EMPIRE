@@ -1,0 +1,92 @@
+{
+  "business_id": "willowgiftworks-etsy",
+  "business_name": "WillowGiftWorks",
+  "platform": "Etsy",
+  "business_type": "etsy",
+  "launch_date": "2026-08-06",
+  "currency": "USD",
+  "product_categories": [
+    "Personalized Trick-or-Treat Bags",
+    "Kids Halloween Gifts",
+    "Custom Tote Bags"
+  ],
+  "listings": [
+    {
+      "listing_id": "4548861180",
+      "name": "Personalized Trick or Treat Bag | Cute Ghost Halloween Tote for Kids | Custom Name Candy Bag | Toddler Halloween Gift",
+      "price": 25.99,
+      "status": "active",
+      "personalized": true
+    },
+    {
+      "listing_id": "4548856270",
+      "name": "Personalized Trick or Treat Bag | Jack O Lantern Halloween Tote for Kids | Custom Name Candy Bag | Pumpkin Halloween Gift",
+      "price": 25.99,
+      "status": "active",
+      "personalized": true
+    },
+    {
+      "listing_id": "4548843441",
+      "name": "Personalized Trick or Treat Bag | Witch Hat Halloween Tote for Kids | Custom Name Candy Bag | Modern Halloween Gift",
+      "price": 25.99,
+      "status": "active",
+      "personalized": true
+    },
+    {
+      "listing_id": "4548846117",
+      "name": "Personalized Trick or Treat Bag | Cute Monster Halloween Tote for Boys | Custom Name Candy Bag | Kids Halloween Gift",
+      "price": 25.99,
+      "status": "active",
+      "personalized": true
+    },
+    {
+      "listing_id": "4548846481",
+      "name": "Personalized Trick or Treat Bag | Little Witch Halloween Tote for Girls | Custom Name Candy Bag | Kids Halloween Gift",
+      "price": 25.99,
+      "status": "active",
+      "personalized": true
+    }
+  ],
+  "known_costs": {
+    "production_cost_per_unit": 9.48,
+    "shipping_cost_first_item": 3.99,
+    "shipping_cost_additional_item": 2.09,
+    "source": "marketing/halloween-pricing-model.md"
+  },
+  "thresholds": {
+    "_comment": "Defaults from agents/analyticsdir/kpi-and-alerts.md. Not yet overridden — revisit once a few weeks of real data exist and the defaults can be sanity-checked against actual volume.",
+    "revenue_drop_critical_pct": 30,
+    "conversion_drop_critical_pct": 40,
+    "zero_activity_critical_periods": 3
+  },
+  "snapshots": [
+    {
+      "date": "2026-08-06",
+      "period_type": "day",
+      "revenue": 0,
+      "orders": 0,
+      "sessions_or_visits": null,
+      "views": null,
+      "clicks": null,
+      "favorites": null,
+      "conversion_rate": null,
+      "marketing_spend": null,
+      "marketing_channel_breakdown": {
+        "organic_search": null,
+        "paid_ads": null,
+        "social": null,
+        "direct": null,
+        "other": null
+      },
+      "top_search_terms": [],
+      "products": [
+        { "product_id": "4548861180", "name": "Cute Ghost", "views": null, "favorites": null, "orders": 0, "revenue": 0 },
+        { "product_id": "4548856270", "name": "Jack O Lantern", "views": null, "favorites": null, "orders": 0, "revenue": 0 },
+        { "product_id": "4548843441", "name": "Witch Hat & Stars", "views": null, "favorites": null, "orders": 0, "revenue": 0 },
+        { "product_id": "4548846117", "name": "Cute Monster", "views": null, "favorites": null, "orders": 0, "revenue": 0 },
+        { "product_id": "4548846481", "name": "Little Witch", "views": null, "favorites": null, "orders": 0, "revenue": 0 }
+      ],
+      "notes": "Launch-day baseline. All 5 listings confirmed live and Published on Etsy, free shipping active, personalization enabled, no accidental placeholder names. Shop policies updated same day: About/Story + FAQ rewritten, Returns & exchanges set to not-accepted (personalized/final-sale), Cancellations accepted within 12 hours of purchase, Privacy policy published. 0 sales / 0 reviews confirmed directly on the shop's public About page. Views, clicks, sessions, favorites, conversion rate, marketing spend, and search terms are NOT yet logged — no Etsy Stats pull has been done. These are null, not zero, and are pending the first entry via the Daily Analytics Workflow (see businesses/willowgiftworks-etsy/daily-analytics-workflow.md)."
+    }
+  ]
+}

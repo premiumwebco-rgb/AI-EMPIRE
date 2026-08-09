@@ -1,0 +1,87 @@
+{
+  "queue": [
+    {
+      "id": "cq-001",
+      "raw_command": "Ember: activate Tally in manual mode for WillowGiftWorks Etsy",
+      "agent": "Tally",
+      "status": "completed",
+      "queued_at": "2026-08-06",
+      "started_at": "2026-08-06",
+      "completed_at": "2026-08-06",
+      "dependencies": [],
+      "files_affected": [
+        "data/metrics/willowgiftworks-etsy.json",
+        "businesses/willowgiftworks-etsy/daily-analytics-workflow.md",
+        "businesses/willowgiftworks-etsy/launch-30-day-checklist.md",
+        "reports/analytics/willowgiftworks-etsy/2026-08-06-launch.md"
+      ],
+      "completion_report": {
+        "task": "Activate the Analytics Agent (Tally) in manual mode for WillowGiftWorks Etsy.",
+        "outcome": "Metrics file created with a real launch-day baseline: 0 sales / 0 orders confirmed directly from the live Etsy shop page; views, traffic, and favorites left null pending the first Etsy Stats pull.",
+        "reasoning": "A brand-new shop with zero sales would be misread by the normal Daily/Weekly report templates as a negative trend. The Launch Report template (agents/analyticsdir/report-templates.md) was used instead — it distinguishes 'confirmed zero' from 'not yet measured.'",
+        "files_created": [
+          "data/metrics/willowgiftworks-etsy.json",
+          "businesses/willowgiftworks-etsy/daily-analytics-workflow.md",
+          "businesses/willowgiftworks-etsy/launch-30-day-checklist.md",
+          "reports/analytics/willowgiftworks-etsy/2026-08-06-launch.md"
+        ],
+        "files_modified": ["docs/launch-monitoring-checklist.md"],
+        "recommendations": "Begin daily Etsy Stats logging immediately using the new workflow doc.",
+        "confidence": "High — the process itself is straightforward; the only real uncertainty is whether daily logging discipline holds, not whether the design works.",
+        "next_suggested_action": "Log a full week of Etsy Stats, then request the first real Weekly Report on or after 2026-08-12."
+      }
+    },
+    {
+      "id": "cq-002",
+      "raw_command": "Ember: convene War Room to assess WillowGiftWorks launch status",
+      "agent": "Ember",
+      "status": "completed",
+      "queued_at": "2026-08-07",
+      "started_at": "2026-08-07",
+      "completed_at": "2026-08-07",
+      "dependencies": ["cq-001"],
+      "files_affected": [
+        "reports/war-room/2026-08-07-war-room.md",
+        "reports/morning-briefing/2026-08-07-briefing.md"
+      ],
+      "completion_report": {
+        "task": "Convene the first War Room meeting for WillowGiftWorks, one day post-launch.",
+        "outcome": "Identified Printify billing as the top open risk; confirmed marketing strategy holds as-is (organic only); confirmed there is not yet enough data for Tally to produce any trend.",
+        "reasoning": "One day post-launch, before any scaling decision, is the right moment for a status check — matches the existing 'test before scaling' rule in prompts/master-agent-prompt.md.",
+        "files_created": [
+          "reports/war-room/2026-08-07-war-room.md",
+          "reports/morning-briefing/2026-08-07-briefing.md"
+        ],
+        "files_modified": [],
+        "recommendations": "Resolve Printify billing this week. Hold marketing spend until real traffic data exists.",
+        "confidence": "High — every input was directly confirmed in Printify/Etsy at the time, not estimated.",
+        "next_suggested_action": "Verify the Printify billing checklist directly (completed as cq-003)."
+      }
+    },
+    {
+      "id": "cq-003",
+      "raw_command": "Founder: verify Printify billing checklist — payment method, default payment, Etsy connection, test fulfillment path",
+      "agent": "Ember",
+      "status": "completed",
+      "queued_at": "2026-08-07",
+      "started_at": "2026-08-07",
+      "completed_at": "2026-08-07",
+      "dependencies": ["cq-002"],
+      "files_affected": [
+        "data/state/missions.json",
+        "data/treasury/expenses.json"
+      ],
+      "completion_report": {
+        "task": "Verify the four Printify billing checklist items directly inside Printify's UI, rather than trusting the launch-day note.",
+        "outcome": "3 of 4 confirmed live: payment method added (Visa ending 8389, exp 07/28), default payment enabled (it's the only card on file), Etsy connection active (auto-sync healthy, last sync the prior night, Approval: Automatic). 4th item — test fulfillment path — was deliberately deferred by the founder to the first real sale rather than a paid self-test order.",
+        "reasoning": "The mission board had this flagged as fully blocked since launch day. That was stale — it needed direct re-verification in Printify, not a re-statement of the old note.",
+        "files_created": [],
+        "files_modified": ["data/state/missions.json", "data/treasury/expenses.json"],
+        "recommendations": "Watch the first real order closely — it now serves as the de facto fulfillment test.",
+        "confidence": "High for the 3 confirmed items (directly observed in the Printify UI). Not applicable to the 4th — it was explicitly deferred, not attempted, so there is nothing to be confident or uncertain about yet.",
+        "next_suggested_action": "No action needed until the first real order arrives; then confirm it enters production successfully."
+      }
+    }
+  ],
+  "last_updated": "2026-08-07"
+}

@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1050" width="1200" height="1050">
+<!--
+  DESIGN ID:   1.2A  |  The Group Chat Roster - Minimal Modern
+  COLLECTION:  04 Middle-Aged Mom Humor (Test Track)
+  PRODUCT:     11oz / 15oz ceramic mug - centered front panel
+  CANVAS:      1200 x 1050 px = 4.00" x 3.50" @ 300 DPI (vector, scales cleanly)
+  BACKGROUND:  Transparent - mug substrate shows through as white.
+               For a coloured mug, add <rect width="1200" height="1050" fill="#FFFFFF"/> as first child.
+
+  FONT:        Nunito (SIL Open Font License 1.1 - free for commercial merchandise)
+               Fallbacks: Nunito Sans, Manrope (both OFL), generic sans-serif.
+               NO proprietary faces (no Helvetica/Arial). Convert to outlines before export.
+
+  PERSONALIZATION FIELDS
+    {LAST_NAME}       -> header title            (shown: CARTER)
+    {MOM_INITIAL}     -> solid avatar            (shown: M)
+    {CHILD_INITIALS}  -> outlined avatars        (shown: A, N)
+    {PET_INITIAL}     -> outlined avatar, opt.   (shown: B)
+    {MEMBER_NAMES}    -> footer roster line      (shown: Ava, Noah, Mia + Biscuit)
+    MEMBER COUNT      -> 4 avatars drawn here; build separate artboards for 2/3/5
+                         (recentre on x=600, spacing 106px)
+
+  IP NOTE: generic chat conventions only - no app chrome, input bar, send button,
+  status bar, logos, or platform gradients. Accent blue #5F7D9A is a muted slate,
+  deliberately unlike any platform brand blue. No raster effects, no filters.
+-->
+
+<g font-family="Nunito, 'Nunito Sans', Manrope, sans-serif">
+
+  <!-- ============ HEADER: AVATAR ROSTER ============ -->
+  <g>
+    <!-- {MOM_INITIAL} - solid, denotes mom -->
+    <circle cx="441" cy="92" r="42" fill="#3A3A38"/>
+    <text x="441" y="107" font-size="40" font-weight="700" fill="#FFFFFF" text-anchor="middle">M</text>
+
+    <!-- {CHILD_INITIALS} - outlined -->
+    <circle cx="547" cy="92" r="42" fill="none" stroke="#3A3A38" stroke-width="5"/>
+    <text x="547" y="107" font-size="40" font-weight="600" fill="#3A3A38" text-anchor="middle">A</text>
+
+    <circle cx="653" cy="92" r="42" fill="none" stroke="#3A3A38" stroke-width="5"/>
+    <text x="653" y="107" font-size="40" font-weight="600" fill="#3A3A38" text-anchor="middle">N</text>
+
+    <!-- {PET_INITIAL} - optional -->
+    <circle cx="759" cy="92" r="42" fill="none" stroke="#3A3A38" stroke-width="5"/>
+    <text x="759" y="107" font-size="40" font-weight="600" fill="#3A3A38" text-anchor="middle">B</text>
+  </g>
+
+  <!-- ============ HEADER: GROUP TITLE {LAST_NAME} ============ -->
+  <text x="600" y="228" font-size="62" font-weight="800" fill="#242423"
+        text-anchor="middle" letter-spacing="2">CARTER FAMILY CHAT</text>
+
+  <line x1="330" y1="278" x2="870" y2="278" stroke="#D8D8D3" stroke-width="3"/>
+
+  <!-- ============ CONVERSATION ============ -->
+
+  <!-- incoming 1 -->
+  <g>
+    <rect x="80" y="340" width="800" height="132" rx="52" fill="#EDEDE8"/>
+    <text x="128" y="425" font-size="56" font-weight="500" fill="#33332F">Mom where are my shoes?</text>
+  </g>
+
+  <!-- incoming 2 -->
+  <g>
+    <rect x="80" y="504" width="530" height="132" rx="52" fill="#EDEDE8"/>
+    <text x="128" y="589" font-size="56" font-weight="500" fill="#33332F">Mom I&#8217;m hungry</text>
+  </g>
+
+  <!-- outgoing - mom's reply, muted slate accent -->
+  <g>
+    <rect x="379" y="668" width="741" height="132" rx="52" fill="#5F7D9A"/>
+    <text x="1072" y="753" font-size="56" font-weight="600" fill="#FFFFFF"
+          text-anchor="end">I am not the shoe locator.</text>
+  </g>
+
+  <!-- ============ FOOTER ROSTER {MEMBER_NAMES} ============
+       SAFE LIMIT: 26 characters incl. separators at 46px/ls4 (measured max width 820px
+       inside the 60-1140 safe zone). Longer rosters overflow the canvas - verified:
+       "ALEXANDER · SAVANNAH · ISABELLA · BISCUIT" renders 1201px and clips both edges.
+       For rosters over 26 chars, comment out the single line below and use the
+       two-line variant that follows it. -->
+  <text x="600" y="928" font-size="46" font-weight="600" fill="#8E8E88"
+        text-anchor="middle" letter-spacing="4">AVA &#183; NOAH &#183; MIA &#183; BISCUIT</text>
+
+  <!-- TWO-LINE VARIANT for long rosters - max 30 chars per line at 38px/ls3
+  <text x="600" y="900" font-size="38" font-weight="600" fill="#8E8E88"
+        text-anchor="middle" letter-spacing="3">ALEXANDER &#183; SAVANNAH</text>
+  <text x="600" y="960" font-size="38" font-weight="600" fill="#8E8E88"
+        text-anchor="middle" letter-spacing="3">ISABELLA &#183; BISCUIT</text>
+  -->
+
+</g>
+</svg>

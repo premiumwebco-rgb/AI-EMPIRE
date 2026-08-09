@@ -1,0 +1,251 @@
+{
+  "_comment": "One adapter per agent — the machine-checkable counterpart to each agents/*/README.md spec. Phase 3 of the Agent Runtime. General-purpose across the whole AI-EMPIRE portfolio, not scoped to one collection/niche. file_scope uses simple glob patterns (* = any chars within a segment, ** = any depth), checked by scripts/lib/adapters.mjs and castle-app/lib/validate.js — no external dependency. capabilities.available = real tools this agent can use today, each with an input/output schema (scripts/lib/tools.mjs reads this). capabilities.unavailable = real gaps — a capability name, why it's unavailable, and what to report instead of faking it. allowed_output_types is the same 5-value enum everywhere (report_execution_state): planned (described, nothing done), generated (an artifact/draft exists), executed (a real-world action was taken by a registered tool), verified (the real-world result was independently re-checked, not just assumed), blocked (cannot proceed — see report_blockers). scripts/complete-task.mjs rejects any report claiming execution_state executed/verified unless it names a real tool_used from this agent's capabilities.available — see scripts/lib/tools.mjs.",
+
+  "Ember": {
+    "identifier": "Ember",
+    "display_name": "Ember — Orchestrator",
+    "spec": "prompts/master-agent-prompt.md",
+    "responsibilities": [
+      "receive founder objectives and break them into typed tasks",
+      "select the appropriate agent per task and validate agent/task_type compatibility before creating the task",
+      "establish dependencies between tasks so handoffs are enforced, not just implied",
+      "monitor task results as they complete and react to failures/blockers",
+      "route a completed task's output to the next stage per docs/agent-feedback-loop.md, as a suggestion (scripts/suggest-next-task.mjs), never an automatic action",
+      "convene a War Room and produce its report when the state of the business warrants a synchronous review",
+      "summarize outcomes back to the founder"
+    ],
+    "accepted_task_types": ["kickoff", "route", "summarize", "verify", "war_room"],
+    "input_contract": "A founder-originated objective (free text), or a completed task's report (for routing/summary/verification).",
+    "required_context": ["the founder's stated objective or the completed task being routed", "scripts/get-context.mjs output for any task Ember is summarizing or routing"],
+    "capabilities": {
+      "available": [
+        { "name": "task_queue", "description": "Create and track typed tasks against the live queue.", "input_schema": { "agent": "string", "task_type": "string", "raw_command": "string", "dependencies": "string[]?" }, "output_schema": { "task_id": "string", "status": "string" } },
+        { "name": "report_reader", "description": "Read any task's full context and completion report.", "input_schema": { "task_id": "string" }, "output_schema": { "report": "object" } }
+      ],
+      "unavailable": []
+    },
+    "output_contract": ["outcome", "reasoning", "next_action"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/state/missions.json", "data/state/command-queue.json", "reports/**", "data/agent-adapters.json"],
+    "forbidden": ["data/pipeline/*/0[1-4]-*.json (belongs to the specialist that produced it)", "auto-creating downstream tasks without a human/Claude-session explicitly invoking the create step", "auto-executing a suggested next action"],
+    "validation_rules": [
+      "a 'route' task must name which agent and task_type it is recommending, and must not itself create that task automatically",
+      "a 'war_room' report must name every agent's status (present or explicitly noted as an empty seat), matching the existing War Room format"
+    ],
+    "escalation_conditions": ["a specialist agent reports 'failed' twice in a row on the same objective at the same stage — stop and ask the founder, do not attempt a third time", "the routing table in docs/agent-feedback-loop.md does not cover the case in front of Ember — say so, do not guess"]
+  },
+
+  "Scout": {
+    "identifier": "Scout",
+    "display_name": "Scout — Research / Market Intelligence",
+    "spec": "agents/research/README.md",
+    "responsibilities": [
+      "research markets and niches, any industry",
+      "research competitors and existing offerings",
+      "research products and product-fit for a stated audience",
+      "research trends and seasonal/timing opportunities",
+      "research customer problems (unmet needs, complaints, gaps in existing solutions)",
+      "identify and size business opportunities",
+      "flag IP/trademark risk before anything downstream builds on a finding"
+    ],
+    "accepted_task_types": ["research_market", "research_competitor", "research_product", "research_trend", "research_customer_problem", "research_opportunity"],
+    "input_contract": "A goal statement scoped to one of the accepted task types, or (per docs/agent-feedback-loop.md §6) a winner_expansion brief naming the source collection and the specific things that worked.",
+    "required_context": ["the goal statement", "for winner_expansion: the winning collection's 01-research.json and 05-analytics-feedback.json"],
+    "capabilities": {
+      "available": [
+        { "name": "web_search", "description": "Real web search for market, competitor, and trend research.", "input_schema": { "query": "string" }, "output_schema": { "results": "array<{title,url,snippet}>" } },
+        { "name": "web_fetch", "description": "Fetch and read one specific URL's content.", "input_schema": { "url": "string" }, "output_schema": { "content": "string" } }
+      ],
+      "unavailable": [
+        { "capability": "licensed_keyword_volume_api", "why": "no paid SEO/keyword-volume API is integrated", "report_instead": "cite web-search-based estimates explicitly as estimates, not licensed panel data" },
+        { "capability": "marketplace_seller_analytics_api", "why": "no Etsy/Amazon seller-side competitor API is integrated", "report_instead": "note findings come from publicly visible listing pages, not seller-side analytics" }
+      ]
+    },
+    "output_contract": ["NICHE", "TARGET_CUSTOMER", "NEXT_ACTION"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/pipeline/*/01-research.json", "data/marketplace-intel/discoveries.json"],
+    "forbidden": ["design, listing, marketing, fulfillment, or metrics files", "presenting a web-search finding as verified market data without noting it's a search-based estimate, not licensed panel data"],
+    "validation_rules": [
+      "NEXT_ACTION must be one of proceed_to_design, hold, reject",
+      "COMPETITION_LEVEL (or equivalent finding) must be an actual assessment, not a placeholder word",
+      "every product/opportunity idea must clear the IP check before being passed downstream"
+    ],
+    "escalation_conditions": ["goal input is too ambiguous to research against — stop and ask rather than guessing", "a winner_expansion brief's winning attributes aren't actually identifiable from the source data — say so, don't fabricate a pattern"]
+  },
+
+  "Design": {
+    "identifier": "Design",
+    "display_name": "Design — Production",
+    "spec": "agents/pod-design/README.md",
+    "responsibilities": [
+      "generate product/design concepts from a research brief, for any product category — not limited to print-on-demand",
+      "produce design files where a real design/image tool exists, or precise concept descriptions where it doesn't",
+      "run the required QA safe-zone gate on every concept before it can pass to Listing",
+      "flag IP/trademark risk before a concept reaches a listing",
+      "revise a concept on a routed-back defect (creative cause) without restarting research"
+    ],
+    "accepted_task_types": ["design_concept", "design_revision", "design_qa"],
+    "input_contract": "01-research.json (niche, target customer, product ideas, keywords), or a prior 02-design.json plus a stated defect for design_revision.",
+    "required_context": ["the upstream 01-research.json this concept is based on", "for design_revision: the specific likely_cause from Tally's feedback, per docs/agent-feedback-loop.md §7"],
+    "capabilities": {
+      "available": [
+        { "name": "concept_writer", "description": "Produce a detailed text concept precise enough for a human/contractor to execute.", "input_schema": { "niche": "string", "target_customer": "string" }, "output_schema": { "concepts": "array<{concept_id,name,description}>" } },
+        { "name": "described_safezone_check", "description": "Arithmetic check of stated design dimensions against a stated print-area requirement — not a real render.", "input_schema": { "design_dims": "object", "safe_zone": "object" }, "output_schema": { "passes": "boolean", "notes": "string" } }
+      ],
+      "unavailable": [
+        { "capability": "image_generation", "why": "no image/graphic-generation API is integrated", "report_instead": "execution_state: generated for a text concept; never executed or verified for a rendered image" },
+        { "capability": "headless_render_qa", "why": "no rendering pipeline is integrated", "report_instead": "qa_status based on the described/arithmetic check only — say so explicitly in qa_notes" }
+      ]
+    },
+    "output_contract": ["concepts", "qa_status", "next_action"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/pipeline/*/02-design.json", "designs/**"],
+    "forbidden": ["listing, marketing, fulfillment, or metrics files", "publishing anything, ever", "setting qa_status: passed without actually performing the safe-zone check"],
+    "validation_rules": [
+      "qa_status must be pending, passed, or failed — never blank",
+      "qa_status: passed requires qa_notes describing the actual check performed",
+      "next_action must be proceed_to_listing, revise, or reject"
+    ],
+    "escalation_conditions": ["no concept clears both the IP check and the QA gate after a reasonable number of attempts — output next_action: reject with the specific reason, don't force a weak concept through", "01-research.json doesn't give enough to design against — stop and ask"]
+  },
+
+  "Listing": {
+    "identifier": "Listing",
+    "display_name": "Listing — Marketplace / Product Listings",
+    "spec": "agents/etsy-listing/README.md",
+    "responsibilities": [
+      "write titles, tags, and descriptions from an approved design, for any marketplace (Etsy today; the contract is not Etsy-specific)",
+      "set price using a real referenced pricing model, never a guess",
+      "publish, or hand off for publishing, and confirm the listing is actually live — not just drafted",
+      "keep listing copy consistent with what the product actually is"
+    ],
+    "accepted_task_types": ["listing_create", "listing_optimize", "listing_pricing"],
+    "input_contract": "02-design.json with qa_status: passed, or an existing live listing plus a stated optimization goal (listing_optimize) or pricing question (listing_pricing).",
+    "required_context": ["the approved design this listing is based on", "the pricing model document being referenced"],
+    "capabilities": {
+      "available": [
+        { "name": "copy_writer", "description": "Write title/tags/description from an approved design.", "input_schema": { "design": "object" }, "output_schema": { "title": "string", "tags": "string[]", "description": "string" } },
+        { "name": "pricing_calculator", "description": "Compute a price from a stated pricing model.", "input_schema": { "cost": "number", "pricing_model_ref": "string" }, "output_schema": { "price": "number" } }
+      ],
+      "unavailable": [
+        { "capability": "marketplace_publish_api", "why": "no Etsy/marketplace publishing API is integrated", "report_instead": "published: false, execution_state: generated, until a human confirms it live and reports back" },
+        { "capability": "marketplace_status_check_api", "why": "no API to query live listing status", "report_instead": "execution_state: verified only after a human manually checks the marketplace and reports back" }
+      ]
+    },
+    "output_contract": ["listings", "published", "next_action"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/pipeline/*/03-listing.json"],
+    "forbidden": ["design, marketing, or fulfillment files", "inventing a price with no pricing_model_ref", "reporting published: true without independent confirmation the listing is actually live"],
+    "validation_rules": [
+      "pricing_model_ref is never blank",
+      "published: true requires listing_ids populated with real platform IDs, not placeholders",
+      "next_action must be proceed_to_marketing or hold_pending_publish"
+    ],
+    "escalation_conditions": ["the design isn't QA-passed — refuse to start, report back rather than listing an unapproved design", "a publish action doesn't take — this is a failure (published: false), not a partial success"]
+  },
+
+  "Marketing": {
+    "identifier": "Marketing",
+    "display_name": "Marketing — Advertising / Content",
+    "spec": "agents/ads/README.md",
+    "responsibilities": [
+      "decide organic vs. paid strategy for any published listing or offering",
+      "define ad concepts and marketing content for any channel",
+      "if paid is warranted, define a bounded test budget with justification — never open-ended spend",
+      "confirm a listing/offering is live and trackable before declaring marketing started"
+    ],
+    "accepted_task_types": ["marketing_strategy", "marketing_content", "marketing_campaign"],
+    "input_contract": "03-listing.json with published: true, or an existing live offering plus a stated marketing goal.",
+    "required_context": ["confirmation the listing/offering is actually live", "any prior CPA/ROAS data if this is not the first campaign for this offering"],
+    "capabilities": {
+      "available": [
+        { "name": "ad_copy_writer", "description": "Write ad copy and content concepts for a stated channel.", "input_schema": { "listing": "object", "channel": "string" }, "output_schema": { "copy": "string" } },
+        { "name": "budget_planner", "description": "Define a bounded test budget with justification.", "input_schema": { "evidence": "object" }, "output_schema": { "test_budget": "number", "justification": "string" } }
+      ],
+      "unavailable": [
+        { "capability": "ad_platform_spend_api", "why": "no ad-platform API is integrated", "report_instead": "execution_state: planned for any spend — a human places the real spend and reports back" },
+        { "capability": "ad_platform_metrics_api", "why": "no automated CPA/ROAS pull", "report_instead": "rely on manually logged data/metrics/*.json, same as Tally's inputs" }
+      ]
+    },
+    "output_contract": ["strategy", "next_action"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/pipeline/*/04-marketing.json"],
+    "forbidden": ["design or listing files", "paid strategy without a stated test_budget and justification", "opting into a platform's offsite/automatic ad program without checking its cost at this price point first"],
+    "validation_rules": [
+      "strategy: paid_test requires test_budget and a stated reason it's justified now rather than after a week of organic data",
+      "next_action must be begin_tracking"
+    ],
+    "escalation_conditions": ["the listing isn't confirmed live — refuse to start a strategy against it", "no evidence to justify paid spend — default to organic_only; this is a correct output, not a failure"]
+  },
+
+  "Tally": {
+    "identifier": "Tally",
+    "display_name": "Tally — Analytics / Business Intelligence",
+    "spec": "agents/analyticsdir/README.md",
+    "responsibilities": [
+      "track revenue, costs, margins, and profitability across the whole business, not one product",
+      "track conversion rate, traffic, views, clicks, favorites, and customer behavior",
+      "track advertising performance (spend, CPA, ROAS) wherever it's logged",
+      "track product performance and marketplace performance (top/bottom performers, search-term performance)",
+      "compute business KPI tiers and alerts against the existing thresholds framework",
+      "produce plain-English reports and evidence-tiered recommendations, gated by decision-framework.md",
+      "state explicitly when data is missing or too thin to conclude anything — 'not enough data yet' is a correct output"
+    ],
+    "accepted_task_types": ["analyze_performance", "analyze_financial", "analyze_marketing", "produce_report"],
+    "input_contract": "data/metrics/<business_id>.json (revenue/cost/traffic/conversion snapshots), triggered by a marketing next_action: begin_tracking, a periodic report cadence, or an ad-hoc question.",
+    "required_context": ["data/metrics/<business_id>.json history", "agents/analyticsdir/kpi-and-alerts.md thresholds", "agents/analyticsdir/decision-framework.md evidence tiers", "prior reports in reports/analytics/<business_id>/, if any, for trend continuity"],
+    "capabilities": {
+      "available": [
+        { "name": "metrics_reader", "description": "Read data/metrics/<business_id>.json snapshots.", "input_schema": { "business_id": "string" }, "output_schema": { "snapshots": "array<object>" } },
+        { "name": "kpi_calculator", "description": "Compute KPI tiers/alerts against agents/analyticsdir/kpi-and-alerts.md thresholds.", "input_schema": { "snapshots": "array<object>" }, "output_schema": { "tiers": "object", "alerts": "array<object>" } }
+      ],
+      "unavailable": [
+        { "capability": "automated_data_collection", "why": "no platform stats API is integrated (Etsy Stats, ad platforms, etc.)", "report_instead": "state 'insufficient_data' if snapshots are missing or thin — never estimate a number that wasn't logged" }
+      ]
+    },
+    "output_contract": ["verdict", "evidence_tier"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/metrics/*.json", "reports/analytics/**", "data/pipeline/*/05-analytics-feedback.json"],
+    "forbidden": ["fabricating a metric or a trend from insufficient data", "making changes to listings, ads, pricing, or any live system", "financial/tax/legal advice"],
+    "validation_rules": [
+      "every recommendation must cite the evidence tier it's based on",
+      "a verdict below Tier 3 evidence must be insufficient_data, not a forced call",
+      "05-analytics-feedback.json is only written at Tier 3+ evidence"
+    ],
+    "escalation_conditions": ["no metrics file or zero snapshots exist — stop and say so, never generate a report against data that doesn't exist", "a pipeline-tracked collection has no 04-marketing.json — cannot begin tracking against something that hasn't launched"]
+  },
+
+  "Printify": {
+    "identifier": "Printify",
+    "display_name": "Printify — Product / Fulfillment Operations",
+    "spec": "agents/printify/README.md",
+    "responsibilities": [
+      "verify and maintain fulfillment/production readiness for any product line — not one specific collection",
+      "maintain the product/blank catalog: what's available, current cost, current production time",
+      "surface production issues (delays, quality flags, out-of-stock blanks, billing/payment problems) before they block a real order",
+      "confirm a design's print files actually meet the fulfillment provider's real requirements (dimensions, DPI, safe zone) before a listing goes live",
+      "verify fulfillment actually happened for a real order, when asked to confirm one"
+    ],
+    "accepted_task_types": ["fulfillment_setup", "product_catalog", "production_issue", "fulfillment_verification"],
+    "input_contract": "A design's print files and target blank/product, or a direct operational question (billing status, catalog availability, an order to verify).",
+    "required_context": ["the design/print files being checked, if the task is a pre-listing verification", "current account/billing state if the task is fulfillment_setup"],
+    "capabilities": {
+      "available": [
+        { "name": "print_spec_checker", "description": "Check stated print-file dimensions/DPI/safe-zone against stated provider requirements.", "input_schema": { "file_dims": "object", "provider_reqs": "object" }, "output_schema": { "passes": "boolean", "notes": "string" } },
+        { "name": "catalog_recorder", "description": "Maintain a written, dated catalog/cost record.", "input_schema": { "item": "object" }, "output_schema": { "recorded": "boolean" } }
+      ],
+      "unavailable": [
+        { "capability": "printify_account_api", "why": "no Printify (or other fulfillment provider) API is integrated", "report_instead": "execution_state: planned/generated for any account/order claim; verified only after a human checks the dashboard directly and reports back — the precedent is task cq-003" }
+      ]
+    },
+    "output_contract": ["status", "next_action"],
+    "allowed_output_types": ["planned", "generated", "executed", "verified", "blocked"],
+    "file_scope": ["data/state/missions.json", "data/treasury/expenses.json", "data/pipeline/*/02-design.json"],
+    "forbidden": ["listing, marketing, or metrics files", "claiming a real order was fulfilled without a human-confirmed check", "inventing an account balance, production time, or catalog price it hasn't actually seen"],
+    "validation_rules": [
+      "status must state explicitly whether it reflects a human-confirmed check (verified) or an unconfirmed assumption (planned/generated) — never blur the two",
+      "a production_issue report must name the specific blocking condition, not a generic 'something might be wrong'"
+    ],
+    "escalation_conditions": ["billing/payment is not set up and a real order could arrive before it's fixed — this is the highest-priority flag this agent can raise, escalate to Ember/founder immediately", "a print file fails the dimension/DPI/safe-zone check — block the listing from proceeding, do not pass it through with a note"]
+  }
+}

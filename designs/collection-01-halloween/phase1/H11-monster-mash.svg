@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000" width="3000" height="3000">
+<!--
+  DESIGN ID:   H11 |  Monster Mash
+  COLLECTION:  01 Halloween (PRIORITY 1)  |  Tote bag, 10" x 10" @ 300 DPI
+  SAFE ZONE:   150-2850  |  Transparent background  |  Fredoka + Nunito (OFL)
+  BUYER:       Parent of a boy 4-9. Bold "boy-coded" option; pairs with H12.
+  PERSONALIZATION: {CHILD_NAME}
+-->
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <text x="1500" y="470" font-family="Nunito, sans-serif" font-size="130" font-weight="700"
+        fill="#1E1B24" text-anchor="middle" letter-spacing="22">TRICK OR TREAT</text>
+
+  <!-- horns -->
+  <polygon points="1148,960 1252,690 1338,966" fill="#3E9C86"/>
+  <polygon points="1662,966 1748,690 1852,960" fill="#3E9C86"/>
+
+  <!-- arms -->
+  <rect x="770" y="1420" width="230" height="120" rx="60" fill="#3E9C86"/>
+  <rect x="2000" y="1420" width="230" height="120" rx="60" fill="#3E9C86"/>
+
+  <!-- feet (behind body so the outline reads cleanly) -->
+  <ellipse cx="1215" cy="2090" rx="200" ry="105" fill="#3E9C86"/>
+  <ellipse cx="1785" cy="2090" rx="200" ry="105" fill="#3E9C86"/>
+
+  <!-- body -->
+  <rect x="950" y="900" width="1100" height="1180" rx="420"
+        fill="#5BC0A8" stroke="#1E1B24" stroke-width="22"/>
+
+  <!-- eye -->
+  <circle cx="1500" cy="1330" r="235" fill="#FFFFFF" stroke="#1E1B24" stroke-width="20"/>
+  <circle cx="1500" cy="1340" r="112" fill="#1E1B24"/>
+  <circle cx="1552" cy="1288" r="40" fill="#FFFFFF"/>
+
+  <!-- mouth -->
+  <path d="M 1185 1690 Q 1500 2020 1815 1690 Z" fill="#1E1B24"/>
+  <polygon points="1300,1760 1392,1760 1346,1862" fill="#FFFFFF"/>
+  <polygon points="1608,1760 1700,1760 1654,1862" fill="#FFFFFF"/>
+
+  <!-- {CHILD_NAME} -->
+  <text x="1500" y="2620" font-size="330" font-weight="700"
+        fill="#1E1B24" text-anchor="middle">Jaxon</text>
+
+</g>
+<!-- LIGHT-INK SWAP for black totes: #1E1B24 -> #F7EFE2 for eyebrow + name; keep body outline dark -->
+</svg>

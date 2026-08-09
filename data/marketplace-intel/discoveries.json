@@ -1,0 +1,15 @@
+{
+  "discoveries": [
+    {
+      "id": "disc-01",
+      "date": "2026-08-06",
+      "agent": "Design QA / manual mockup audit",
+      "category": "supplier_gap",
+      "finding": "Printify's mockup library for the current tote bag blank has no kid-appropriate lifestyle photography — every 'Person' mockup slot shows an adult model. The Halloween collection's gallery had to be built from product-only shots (front, back, size guide) instead of lifestyle imagery.",
+      "relevance": "Affects any future kids-focused collection using this same blank/provider. Consider evaluating alternate print providers with kid-model mockups, or budgeting for custom lifestyle photography, before the next kids-targeted launch.",
+      "confidence": "confirmed",
+      "source": "Full mockup library audit performed across all 5 Halloween listings, 2026-08-06."
+    }
+  ],
+  "last_updated": "2026-08-07"
+}

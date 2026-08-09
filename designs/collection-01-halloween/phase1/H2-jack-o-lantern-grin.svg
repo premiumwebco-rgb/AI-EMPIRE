@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000" width="3000" height="3000">
+<!--
+  DESIGN ID:   H2  |  Classic Jack-O-Lantern Grin
+  COLLECTION:  01 Halloween (PRIORITY 1)  |  Tote bag, 10" x 10" @ 300 DPI
+  SAFE ZONE:   150-2850  |  Transparent background  |  Fredoka + Nunito (OFL)
+  BUYER:       Any-age parent. Broadest-appeal default SKU.
+  PERSONALIZATION: {CHILD_NAME}
+-->
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <text x="1500" y="470" font-family="Nunito, sans-serif" font-size="130" font-weight="700"
+        fill="#3B2A4A" text-anchor="middle" letter-spacing="22">TRICK OR TREAT</text>
+
+  <!-- stem + leaf -->
+  <path d="M 1428 940 C 1408 800 1428 640 1494 560 C 1580 600 1596 790 1572 940 Z"
+        fill="#5C7A3E"/>
+  <path d="M 1566 700 C 1690 606 1846 626 1906 690 C 1810 790 1660 790 1560 738 Z"
+        fill="#6E9149"/>
+
+  <!-- pumpkin body: outer lobes then centre -->
+  <ellipse cx="1060" cy="1570" rx="420" ry="660" fill="#D9631F"/>
+  <ellipse cx="1940" cy="1570" rx="420" ry="660" fill="#D9631F"/>
+  <ellipse cx="1500" cy="1570" rx="800" ry="690" fill="#E8722A"/>
+  <path d="M 1180 960 C 1080 1250 1080 1890 1180 2180" fill="none"
+        stroke="#C4551A" stroke-width="24" stroke-linecap="round"/>
+  <path d="M 1820 960 C 1920 1250 1920 1890 1820 2180" fill="none"
+        stroke="#C4551A" stroke-width="24" stroke-linecap="round"/>
+
+  <!-- carved face -->
+  <polygon points="1180,1470 1352,1470 1266,1276" fill="#3B2A4A"/>
+  <polygon points="1648,1470 1820,1470 1734,1276" fill="#3B2A4A"/>
+  <polygon points="1436,1672 1564,1672 1500,1536" fill="#3B2A4A"/>
+  <path d="M 1120 1790 Q 1500 2210 1880 1790
+           L 1780 1790 L 1716 1902 L 1638 1790 L 1540 1912 L 1442 1790
+           L 1358 1902 L 1290 1790 Z" fill="#3B2A4A"/>
+
+  <!-- {CHILD_NAME} -->
+  <text x="1500" y="2620" font-size="330" font-weight="700"
+        fill="#3B2A4A" text-anchor="middle">Mason</text>
+
+</g>
+<!-- LIGHT-INK SWAP for black totes: #3B2A4A -> #F7EFE2 (name + eyebrow only; carved face stays dark) -->
+</svg>

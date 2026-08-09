@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000" width="3000" height="3000">
+<!--
+  DESIGN ID:   H3  |  Witch Hat & Stars
+  COLLECTION:  01 Halloween (PRIORITY 1)  |  Tote bag, 10" x 10" @ 300 DPI
+  SAFE ZONE:   150-2850  |  Transparent background  |  Fredoka + Nunito (OFL)
+  BUYER:       Mom 30-42, aesthetic-conscious. Modern minimal - also prints well on apparel.
+  PERSONALIZATION: {CHILD_NAME}
+-->
+<defs>
+  <polygon id="hstar" points="0,-100 23.5,-30.9 95.1,-30.9 37.8,11.8 58.8,80.9 0,38.2
+                              -58.8,80.9 -37.8,11.8 -95.1,-30.9 -23.5,-30.9"/>
+</defs>
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <!-- stars -->
+  <g fill="#F2C14E">
+    <use href="#hstar" transform="translate(700,880) scale(0.85)"/>
+    <use href="#hstar" transform="translate(2300,980) scale(0.95)"/>
+    <use href="#hstar" transform="translate(560,1520) scale(0.6)"/>
+    <use href="#hstar" transform="translate(2440,1560) scale(0.7)"/>
+    <use href="#hstar" transform="translate(940,560) scale(0.5)"/>
+    <use href="#hstar" transform="translate(2080,540) scale(0.62)"/>
+  </g>
+
+  <!-- hat -->
+  <path d="M 1218 1790 C 1252 1330 1398 970 1596 700
+           C 1700 1000 1762 1420 1794 1790 Z" fill="#3B2A4A"/>
+  <ellipse cx="1500" cy="1800" rx="760" ry="152" fill="#3B2A4A"/>
+  <path d="M 1230 1650 L 1788 1650 L 1794 1782 L 1224 1782 Z" fill="#7B5EA7"/>
+  <rect x="1432" y="1652" width="136" height="126" rx="10" fill="#F2C14E"/>
+  <rect x="1468" y="1686" width="64" height="58" rx="6" fill="#3B2A4A"/>
+
+  <!-- {CHILD_NAME} -->
+  <text x="1500" y="2400" font-size="340" font-weight="700"
+        fill="#3B2A4A" text-anchor="middle">Harper</text>
+
+  <text x="1500" y="2680" font-family="Nunito, sans-serif" font-size="120" font-weight="700"
+        fill="#7B5EA7" text-anchor="middle" letter-spacing="20">TRICK OR TREAT</text>
+
+</g>
+<!-- LIGHT-INK SWAP for black totes: #3B2A4A -> #F7EFE2, keep #F2C14E stars and #7B5EA7 band -->
+</svg>

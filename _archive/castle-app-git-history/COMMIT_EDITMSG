@@ -1,0 +1,5 @@
+Initial commit: AI-EMPIRE HQ live castle app
+
+Next.js 14 app that replaces the generated-snapshot Artifact castle with
+a real app reading/writing Supabase Postgres directly, with Realtime
+subscriptions so the UI updates without a manual refresh or redeploy.

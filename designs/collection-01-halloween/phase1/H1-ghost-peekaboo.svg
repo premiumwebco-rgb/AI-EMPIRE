@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000" width="3000" height="3000">
+<!--
+  DESIGN ID:   H1  |  Ghost Peekaboo
+  COLLECTION:  01 Halloween - Personalized Trick-or-Treat Bags (PRIORITY 1)
+  PRODUCT:     Cotton tote bag - centred front panel
+  CANVAS:      3000 x 3000 px = 10" x 10" @ 300 DPI  |  SAFE ZONE x/y 150-2850
+  BACKGROUND:  Transparent. Designed for natural-canvas or light totes.
+               For black totes use the light-ink swap noted at the foot of this file.
+  FONTS:       Fredoka (SIL OFL) headline + name; Nunito (SIL OFL) small caps.
+  BUYER:       Mom 28-38, toddler 2-5. Cute-not-scary.
+  PERSONALIZATION: {CHILD_NAME} - safe to 9 characters at 330px (see QA notes).
+-->
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <!-- eyebrow -->
+  <text x="1500" y="560" font-family="Nunito, sans-serif" font-size="140" font-weight="700"
+        fill="#3B2A4A" text-anchor="middle" letter-spacing="24">TRICK OR TREAT</text>
+
+  <!-- ghost -->
+  <g>
+    <path d="M 960 2060 L 960 1290 A 540 540 0 0 1 2040 1290 L 2040 2060
+             Q 1905 2262 1770 2060 Q 1635 2262 1500 2060
+             Q 1365 2262 1230 2060 Q 1095 2262 960 2060 Z"
+          fill="#FFFFFF" stroke="#3B2A4A" stroke-width="22" stroke-linejoin="round"/>
+    <circle cx="1128" cy="1585" r="92" fill="#F5A9A0"/>
+    <circle cx="1872" cy="1585" r="92" fill="#F5A9A0"/>
+    <ellipse cx="1288" cy="1385" rx="88" ry="112" fill="#3B2A4A"/>
+    <ellipse cx="1712" cy="1385" rx="88" ry="112" fill="#3B2A4A"/>
+    <ellipse cx="1500" cy="1655" rx="86" ry="108" fill="#3B2A4A"/>
+  </g>
+
+  <!-- {CHILD_NAME} -->
+  <text x="1500" y="2600" font-size="330" font-weight="700"
+        fill="#E8722A" text-anchor="middle">Olivia</text>
+
+</g>
+<!-- LIGHT-INK SWAP for black totes: #3B2A4A -> #F7EFE2, #E8722A stays, ghost fill stays #FFFFFF -->
+</svg>

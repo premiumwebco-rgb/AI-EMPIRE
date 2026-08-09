@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 1560" width="1400" height="1560">
+<rect width="1400" height="1560" fill="#FBFAF8"/>
+<text x="700" y="110" font-family="Fredoka, sans-serif" font-size="76" font-weight="700" fill="#3B2A4A" text-anchor="middle">BAG SIZE GUIDE</text>
+<defs><pattern id="szweave" width="12" height="12" patternUnits="userSpaceOnUse">
+<rect width="12" height="12" fill="#E6DBC6"/><path d="M0 6 H12 M6 0 V12" stroke="#DCCFB6" stroke-width="3"/></pattern></defs>
+<path d="M520 800 C520 520 590 400 700 400 C810 400 880 520 880 800" fill="none" stroke="#D3C5AA" stroke-width="34" stroke-linecap="round"/>
+<rect x="400" y="780" width="600" height="640" fill="url(#szweave)"/>
+<rect x="400" y="780" width="600" height="640" fill="none" stroke="#C4B393" stroke-width="5"/>
+<rect x="500" y="900" width="400" height="400" fill="none" stroke="#E8722A" stroke-width="7" stroke-dasharray="22 16"/>
+<text x="700" y="1085" font-family="Fredoka, sans-serif" font-size="52" font-weight="700" fill="#E8722A" text-anchor="middle">PRINT AREA</text>
+<text x="700" y="1150" font-family="Fredoka, sans-serif" font-size="52" font-weight="700" fill="#E8722A" text-anchor="middle">10" &#215; 10"</text>
+<g stroke="#3B2A4A" stroke-width="5">
+  <path d="M400 1490 H1000"/><path d="M400 1466 V1514"/><path d="M1000 1466 V1514"/>
+  <path d="M1090 780 V1420"/><path d="M1066 780 H1114"/><path d="M1066 1420 H1114"/>
+  <path d="M300 400 V800"/><path d="M276 400 H324"/><path d="M276 800 H324"/>
+</g>
+<text x="700" y="1450" font-family="Nunito, sans-serif" font-size="54" font-weight="700" fill="#3B2A4A" text-anchor="middle">15" WIDE</text>
+<text x="1150" y="1118" font-family="Nunito, sans-serif" font-size="54" font-weight="700" fill="#3B2A4A">16" TALL</text>
+<text x="250" y="590" font-family="Nunito, sans-serif" font-size="48" font-weight="700" fill="#3B2A4A" text-anchor="end">11"</text>
+<text x="250" y="650" font-family="Nunito, sans-serif" font-size="48" font-weight="700" fill="#3B2A4A" text-anchor="end">HANDLE</text>
+<text x="250" y="710" font-family="Nunito, sans-serif" font-size="48" font-weight="700" fill="#3B2A4A" text-anchor="end">DROP</text>
+</svg>

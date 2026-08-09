@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 3000" width="3000" height="3000">
+<!--
+  DESIGN ID:   H12 |  Witch Cutie
+  COLLECTION:  01 Halloween (PRIORITY 1)  |  Tote bag, 10" x 10" @ 300 DPI
+  SAFE ZONE:   150-2850  |  Transparent background  |  Fredoka + Nunito (OFL)
+  BUYER:       Parent of a girl 4-9. Soft "girl-coded" option; pairs with H11.
+  PERSONALIZATION: {CHILD_NAME}
+-->
+<defs>
+  <polygon id="wstar" points="0,-100 23.5,-30.9 95.1,-30.9 37.8,11.8 58.8,80.9 0,38.2
+                              -58.8,80.9 -37.8,11.8 -95.1,-30.9 -23.5,-30.9"/>
+</defs>
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <text x="1500" y="430" font-family="Nunito, sans-serif" font-size="126" font-weight="700"
+        fill="#6B4E9E" text-anchor="middle" letter-spacing="22">TRICK OR TREAT</text>
+
+  <g fill="#F2C14E">
+    <use href="#wstar" transform="translate(700,1180) scale(0.62)"/>
+    <use href="#wstar" transform="translate(2320,1240) scale(0.7)"/>
+    <use href="#wstar" transform="translate(880,760) scale(0.45)"/>
+  </g>
+
+  <!-- hair (behind face) -->
+  <ellipse cx="1188" cy="1760" rx="196" ry="330" fill="#C4622D"/>
+  <ellipse cx="1812" cy="1760" rx="196" ry="330" fill="#C4622D"/>
+  <circle cx="1160" cy="2075" r="120" fill="#C4622D"/>
+  <circle cx="1840" cy="2075" r="120" fill="#C4622D"/>
+
+  <!-- face -->
+  <circle cx="1500" cy="1660" r="336" fill="#FBE0C4"/>
+
+  <!-- hat -->
+  <path d="M 1190 1270 C 1248 940 1398 700 1560 560
+           C 1662 800 1742 1058 1810 1270 Z" fill="#6B4E9E"/>
+  <ellipse cx="1500" cy="1282" rx="640" ry="128" fill="#6B4E9E"/>
+  <path d="M 1196 1160 L 1804 1160 L 1812 1272 L 1188 1272 Z" fill="#9B7BD4"/>
+  <use href="#wstar" transform="translate(1500,1216) scale(0.62)" fill="#F2C14E"/>
+
+  <!-- features -->
+  <path d="M 1338 1650 Q 1392 1572 1446 1650" fill="none"
+        stroke="#3B2A4A" stroke-width="26" stroke-linecap="round"/>
+  <path d="M 1554 1650 Q 1608 1572 1662 1650" fill="none"
+        stroke="#3B2A4A" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="1300" cy="1762" r="62" fill="#F5A9A0"/>
+  <circle cx="1700" cy="1762" r="62" fill="#F5A9A0"/>
+  <path d="M 1424 1780 Q 1500 1866 1576 1780" fill="none"
+        stroke="#3B2A4A" stroke-width="24" stroke-linecap="round"/>
+
+  <!-- {CHILD_NAME} -->
+  <text x="1500" y="2560" font-size="330" font-weight="700"
+        fill="#6B4E9E" text-anchor="middle">Amelia</text>
+
+</g>
+<!-- LIGHT-INK SWAP for black totes: #6B4E9E -> #C9B3F0, #3B2A4A features stay -->
+</svg>

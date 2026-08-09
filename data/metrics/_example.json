@@ -1,0 +1,68 @@
+{
+  "business_id": "example-business",
+  "business_type": "etsy",
+  "currency": "USD",
+  "thresholds": {
+    "revenue_drop_critical_pct": 30,
+    "conversion_drop_critical_pct": 40,
+    "zero_activity_critical_periods": 3
+  },
+  "snapshots": [
+    {
+      "date": "2026-08-01",
+      "period_type": "day",
+      "revenue": 130.00,
+      "orders": 5,
+      "sessions_or_visits": 210,
+      "views": 340,
+      "clicks": 260,
+      "favorites": 18,
+      "conversion_rate": null,
+      "marketing_spend": 0,
+      "marketing_channel_breakdown": {
+        "organic_search": 190,
+        "paid_ads": 0,
+        "social": 20,
+        "direct": 0,
+        "other": 0
+      },
+      "top_search_terms": [
+        { "term": "example search term one", "impressions": 400, "clicks": 30 },
+        { "term": "example search term two", "impressions": 150, "clicks": 12 }
+      ],
+      "products": [
+        { "product_id": "sku-001", "name": "Example Product A", "views": 200, "favorites": 10, "orders": 3, "revenue": 78.00 },
+        { "product_id": "sku-002", "name": "Example Product B", "views": 140, "favorites": 8, "orders": 2, "revenue": 52.00 }
+      ],
+      "notes": "First tracked day."
+    },
+    {
+      "date": "2026-08-02",
+      "period_type": "day",
+      "revenue": 156.00,
+      "orders": 6,
+      "sessions_or_visits": 245,
+      "views": 390,
+      "clicks": 300,
+      "favorites": 21,
+      "conversion_rate": null,
+      "marketing_spend": 0,
+      "marketing_channel_breakdown": {
+        "organic_search": 225,
+        "paid_ads": 0,
+        "social": 20,
+        "direct": 0,
+        "other": 0
+      },
+      "top_search_terms": [
+        { "term": "example search term one", "impressions": 420, "clicks": 34 },
+        { "term": "example search term three", "impressions": 90, "clicks": 9 }
+      ],
+      "products": [
+        { "product_id": "sku-001", "name": "Example Product A", "views": 230, "favorites": 12, "orders": 4, "revenue": 104.00 },
+        { "product_id": "sku-002", "name": "Example Product B", "views": 160, "favorites": 9, "orders": 2, "revenue": 52.00 }
+      ],
+      "notes": ""
+    }
+  ]
+}

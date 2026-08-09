@@ -1,0 +1,12 @@
+{
+  "collection_id": "example-collection",
+  "stage": "marketing",
+  "date": "2026-01-10",
+  "based_on": "03-listing.json",
+  "strategy": "organic_only",
+  "ad_concepts": [],
+  "test_budget": null,
+  "channels": ["organic_search"],
+  "launch_confirmed_date": "2026-01-10",
+  "next_action": "begin_tracking"
+}

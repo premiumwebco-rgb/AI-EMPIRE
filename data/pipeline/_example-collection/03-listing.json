@@ -1,0 +1,14 @@
+{
+  "collection_id": "example-collection",
+  "stage": "listing",
+  "date": "2026-01-10",
+  "based_on": "02-design.json",
+  "listings": [
+    { "product_ref": "concept-a", "title": "Example Listing Title A", "tags": ["example tag one", "example tag two"], "price": 24.99 },
+    { "product_ref": "concept-b", "title": "Example Listing Title B", "tags": ["example tag one", "example tag three"], "price": 24.99 }
+  ],
+  "pricing_model_ref": "marketing/example-collection-pricing-model.md",
+  "published": true,
+  "listing_ids": ["1000000001", "1000000002"],
+  "next_action": "proceed_to_marketing"
+}

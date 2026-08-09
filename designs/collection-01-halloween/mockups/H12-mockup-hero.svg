@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1800" width="1600" height="1800">
+<!-- MOCKUP: H12 on natural-canvas tote. Vector studio render for gallery/preview use.
+     Not a substitute for Printify's generated product photography. -->
+<defs>
+  <pattern id="h12weave" width="12" height="12" patternUnits="userSpaceOnUse">
+    <rect width="12" height="12" fill="#E6DBC6"/>
+    <path d="M0 6 H12 M6 0 V12" stroke="#DCCFB6" stroke-width="3"/>
+  </pattern>
+  <radialGradient id="h12bg" cx="50%" cy="38%" r="78%">
+    <stop offset="0%" stop-color="#FBFAF8"/><stop offset="100%" stop-color="#EAE6E0"/>
+  </radialGradient>
+</defs>
+<rect width="1600" height="1800" fill="url(#h12bg)"/>
+<ellipse cx="800" cy="1690" rx="470" ry="46" fill="#000" opacity="0.10"/>
+<path d="M566 470 C566 300 640 214 800 214 C960 214 1034 300 1034 470"
+      fill="none" stroke="#D3C5AA" stroke-width="42" stroke-linecap="round"/>
+<path d="M566 470 C566 300 640 214 800 214 C960 214 1034 300 1034 470"
+      fill="none" stroke="#C9B99B" stroke-width="14" stroke-linecap="round" opacity="0.45"/>
+<path d="M330 470 L1270 470 L1252 1650 Q800 1690 348 1650 Z" fill="url(#h12weave)"/>
+<path d="M330 470 L1270 470 L1252 1650 Q800 1690 348 1650 Z" fill="#000" opacity="0.05"/>
+<path d="M330 470 L470 470 L462 1656 Q392 1652 348 1650 Z" fill="#000" opacity="0.05"/>
+<path d="M1130 470 L1270 470 L1252 1650 Q1200 1653 1138 1656 Z" fill="#000" opacity="0.05"/>
+<rect x="330" y="470" width="940" height="22" fill="#000" opacity="0.08"/>
+<g transform="translate(260,502) scale(0.36)"><defs>
+  <polygon id="h12wstar" points="0,-100 23.5,-30.9 95.1,-30.9 37.8,11.8 58.8,80.9 0,38.2
+                              -58.8,80.9 -37.8,11.8 -95.1,-30.9 -23.5,-30.9"/>
+</defs>
+<g font-family="Fredoka, Nunito, sans-serif">
+
+  <text x="1500" y="430" font-family="Nunito, sans-serif" font-size="126" font-weight="700"
+        fill="#6B4E9E" text-anchor="middle" letter-spacing="22">TRICK OR TREAT</text>
+
+  <g fill="#F2C14E">
+    <use href="#h12wstar" transform="translate(700,1180) scale(0.62)"/>
+    <use href="#h12wstar" transform="translate(2320,1240) scale(0.7)"/>
+    <use href="#h12wstar" transform="translate(880,760) scale(0.45)"/>
+  </g>
+
+  
+  <ellipse cx="1188" cy="1760" rx="196" ry="330" fill="#C4622D"/>
+  <ellipse cx="1812" cy="1760" rx="196" ry="330" fill="#C4622D"/>
+  <circle cx="1160" cy="2075" r="120" fill="#C4622D"/>
+  <circle cx="1840" cy="2075" r="120" fill="#C4622D"/>
+
+  
+  <circle cx="1500" cy="1660" r="336" fill="#FBE0C4"/>
+
+  
+  <path d="M 1190 1270 C 1248 940 1398 700 1560 560
+           C 1662 800 1742 1058 1810 1270 Z" fill="#6B4E9E"/>
+  <ellipse cx="1500" cy="1282" rx="640" ry="128" fill="#6B4E9E"/>
+  <path d="M 1196 1160 L 1804 1160 L 1812 1272 L 1188 1272 Z" fill="#9B7BD4"/>
+  <use href="#h12wstar" transform="translate(1500,1216) scale(0.62)" fill="#F2C14E"/>
+
+  
+  <path d="M 1338 1650 Q 1392 1572 1446 1650" fill="none"
+        stroke="#3B2A4A" stroke-width="26" stroke-linecap="round"/>
+  <path d="M 1554 1650 Q 1608 1572 1662 1650" fill="none"
+        stroke="#3B2A4A" stroke-width="26" stroke-linecap="round"/>
+  <circle cx="1300" cy="1762" r="62" fill="#F5A9A0"/>
+  <circle cx="1700" cy="1762" r="62" fill="#F5A9A0"/>
+  <path d="M 1424 1780 Q 1500 1866 1576 1780" fill="none"
+        stroke="#3B2A4A" stroke-width="24" stroke-linecap="round"/>
+
+  
+  <text x="1500" y="2560" font-size="330" font-weight="700"
+        fill="#6B4E9E" text-anchor="middle">Amelia</text>
+
+</g></g>
+</svg>
