@@ -162,6 +162,19 @@ ul.plain li { margin-bottom: 6px; font-size: 0.9rem; }
 .task-detail dt { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--stone-400); margin-top: 8px; }
 .task-detail dd { margin: 2px 0 0; font-size: 0.85rem; }
 
+/* Phase 4b: completion report form. Same tokens/radius/spacing as
+   .composer and .login-card input — a labeled-field layout for a
+   multi-field form, not a new visual language. */
+.report-form { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border); display: flex; flex-direction: column; gap: 10px; }
+.report-form label { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--stone-400); display: block; margin-bottom: 4px; }
+.report-form input, .report-form select, .report-form textarea {
+  width: 100%; background: var(--panel); color: var(--ink); border: 1px solid var(--border);
+  border-radius: 8px; padding: 8px 10px; font-family: inherit; font-size: 0.85rem;
+}
+.report-form textarea { min-height: 56px; resize: vertical; }
+.report-form .field-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (max-width: 640px) { .report-form .field-row { grid-template-columns: 1fr; } }
+
 .chat-log { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
 .chat-empty { font-size: 0.85rem; color: var(--stone-400); font-style: italic; }
 .composer { display: flex; gap: 8px; flex-wrap: wrap; }

@@ -47,7 +47,18 @@ export async function POST(req) {
     return Response.json({ error: `Cannot claim ${id}: depends on ${unmet.join(", ")}, not completed yet.` }, { status: 409 });
   }
 
-  await db.from("tasks").update({ status: "running", started_at: today() }).eq("id", id);
+  // Atomic conditional update: the .eq("status", "queued") runs as part of
+  // the UPDATE's WHERE clause, not a separate check — if another request
+  // already claimed this task between our SELECT above and this write,
+  // zero rows match and .select() comes back empty. Closes the TOCTOU gap
+  // where two concurrent claims could both pass the earlier status check.
+  const { data: claimed } = await db.from("tasks")
+    .update({ status: "running", started_at: today() })
+    .eq("id", id).eq("status", "queued")
+    .select();
+  if (!claimed || claimed.length === 0) {
+    return Response.json({ error: `Task ${id} was already claimed by another request.` }, { status: 409 });
+  }
   await logActivity(db, { agent: task.agent, priority: "medium", text: `${task.agent} started: ${task.raw_command}`, source: "api/tasks/claim", task_id: id });
 
   return Response.json({ id, status: "running" });

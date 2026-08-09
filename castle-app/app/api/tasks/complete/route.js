@@ -55,7 +55,11 @@ export async function POST(req) {
     return Response.json({ error: `Result not validated: ${claimError}` }, { status: 422 });
   }
 
-  await db.from("tasks").update({
+  // Atomic conditional update — same reasoning as claim/route.js: the
+  // .eq("status", "running") is part of the UPDATE's WHERE clause, so a
+  // second completion racing this one (or a claim that got reverted
+  // between our SELECT and this write) can't silently overwrite state.
+  const { data: written } = await db.from("tasks").update({
     status,
     completed_at: today(),
     report_input_data: report.input_data,
@@ -70,7 +74,10 @@ export async function POST(req) {
     report_risks: report.risks,
     report_blockers: report.blockers,
     report_execution_state: report.execution_state || null
-  }).eq("id", id);
+  }).eq("id", id).eq("status", "running").select();
+  if (!written || written.length === 0) {
+    return Response.json({ error: `Task ${id} was no longer 'running' — another request already completed it.` }, { status: 409 });
+  }
 
   await logActivity(db, {
     agent: task.agent,
