@@ -29,7 +29,12 @@ export default async function RoomPage({ params }) {
     t.id,
     {
       dependencyContext: buildDependencyContext(t, depsById),
-      suggestion: t.status === "completed" ? suggestNextAction(t) : null
+      // suggestNextAction already encodes "nothing to suggest yet" as
+      // kind: "not_yet" for queued/running tasks — TaskCard hides the
+      // panel for that kind. Don't re-narrow to completed-only here, or
+      // failed/waiting tasks (which the CLI does have real suggestions
+      // for) silently lose theirs.
+      suggestion: suggestNextAction(t)
     }
   ]));
   const current = tasks.find(t => t.status === "running" || t.status === "queued");

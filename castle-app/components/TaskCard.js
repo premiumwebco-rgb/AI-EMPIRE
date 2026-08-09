@@ -15,6 +15,10 @@ export default function TaskCard({ task, dependencyContext = [], suggestion = nu
   const [open, setOpen] = useState(false);
   const [contextOpen, setContextOpen] = useState(false);
   const hasReport = task.status === "completed" || task.status === "failed";
+  // "not_yet" is suggestNextAction's own encoding of "queued/running,
+  // nothing to suggest" — every other kind (completed, failed, waiting,
+  // stop_signal, route, ...) is a real suggestion worth showing.
+  const showSuggestion = suggestion && suggestion.kind !== "not_yet";
 
   return (
     <div className="task-card">
@@ -29,7 +33,7 @@ export default function TaskCard({ task, dependencyContext = [], suggestion = nu
         <StatusPill status={STATUS_MAP[task.status]} label={STATUS_LABEL[task.status]} />
       </div>
 
-      {suggestion && (
+      {showSuggestion && (
         <div className="note" style={{ marginTop: 10 }}>
           <b>Suggested next action:</b> {suggestion.text}
           {suggestion.command && <div className="mono" style={{ marginTop: 6 }}>{suggestion.command}</div>}
