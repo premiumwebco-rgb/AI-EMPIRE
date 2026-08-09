@@ -12,6 +12,7 @@
 import { openDb } from "./lib/db.mjs";
 import { getAdapter } from "./lib/adapters.mjs";
 import { formatToolRegistry } from "./lib/tools.mjs";
+import { buildDependencyContext } from "./lib/context.mjs";
 
 const [, , id] = process.argv;
 if (!id) {
@@ -29,16 +30,16 @@ if (!task) {
 const adapter = getAdapter(task.agent);
 const deps = JSON.parse(task.dependencies || "[]");
 
-function printReport(t) {
+function printReport(r) {
   const lines = [
-    `    outcome:        ${t.report_outcome || "(none)"}`,
-    `    reasoning:      ${t.report_reasoning || "(none)"}`,
-    `    files_created:  ${t.report_files_created || "[]"}`,
-    `    files_modified: ${t.report_files_modified || "[]"}`,
-    `    risks:          ${t.report_risks || "(none)"}`,
-    `    blockers:       ${t.report_blockers || "(none)"}`,
-    `    next_action:    ${t.report_next_action || "(none)"}`,
-    `    execution_state:${t.report_execution_state || "(none)"}`
+    `    outcome:        ${r.outcome || "(none)"}`,
+    `    reasoning:      ${r.reasoning || "(none)"}`,
+    `    files_created:  ${r.files_created.join(", ") || "(none)"}`,
+    `    files_modified: ${r.files_modified.join(", ") || "(none)"}`,
+    `    risks:          ${r.risks || "(none)"}`,
+    `    blockers:       ${r.blockers || "(none)"}`,
+    `    next_action:    ${r.next_action || "(none)"}`,
+    `    execution_state:${r.execution_state || "(none)"}`
   ];
   return lines.join("\n");
 }
@@ -66,19 +67,25 @@ if (!adapter) {
   console.log(`  Escalation conditions: ${(adapter.escalation_conditions || []).join("; ")}`);
 }
 
-console.log(`\n--- Dependencies (${deps.length}) ---`);
-if (deps.length === 0) {
-  console.log("  (none — this task has no upstream input to review)");
-}
+const depsById = {};
 for (const depId of deps) {
   const dep = db.prepare("SELECT * FROM tasks WHERE id = ?").get(depId);
-  if (!dep) {
-    console.log(`  ${depId}: DOES NOT EXIST`);
+  if (dep) depsById[depId] = dep;
+}
+const dependencyContext = buildDependencyContext(task, depsById);
+
+console.log(`\n--- Dependencies (${dependencyContext.length}) ---`);
+if (dependencyContext.length === 0) {
+  console.log("  (none — this task has no upstream input to review)");
+}
+for (const d of dependencyContext) {
+  if (!d.exists) {
+    console.log(`  ${d.id}: DOES NOT EXIST`);
     continue;
   }
-  console.log(`  ${depId} (${dep.agent}, ${dep.status}): ${dep.raw_command}`);
-  if (dep.status === "completed" || dep.status === "failed") {
-    console.log(printReport(dep));
+  console.log(`  ${d.id} (${d.agent}, ${d.status}): ${d.raw_command}`);
+  if (d.hasReport) {
+    console.log(printReport(d.report));
   }
   console.log("");
 }

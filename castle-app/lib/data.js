@@ -50,6 +50,18 @@ export async function getLatestReport(type) {
   return data;
 }
 
+// Phase 4: fetch a set of tasks by id, regardless of which agent they
+// belong to — used to resolve dependency reports for the Context panel
+// (a Design task's dependency might be a Scout task, outside the room
+// being viewed). Returns { [id]: taskRow }.
+export async function getTasksByIds(ids) {
+  if (!ids || ids.length === 0) return {};
+  const supabase = sessionClient();
+  const { data, error } = await supabase.from("tasks").select("*").in("id", ids);
+  if (error) throw error;
+  return Object.fromEntries(data.map(t => [t.id, t]));
+}
+
 export async function getTasksForAgent(agent) {
   const supabase = sessionClient();
   const { data, error } = await supabase

@@ -3,9 +3,11 @@ import HUD from "../../../components/HUD";
 import StatusPill from "../../../components/StatusPill";
 import TaskCard from "../../../components/TaskCard";
 import AgentComposer from "../../../components/AgentComposer";
-import { getTasksForAgent } from "../../../lib/data";
+import { getTasksForAgent, getTasksByIds } from "../../../lib/data";
 import { ROOMS } from "../../../lib/config";
 import { getAdapter } from "../../../lib/validate";
+import { buildDependencyContext } from "../../../lib/context";
+import { suggestNextAction } from "../../../lib/suggest";
 import { notFound } from "next/navigation";
 
 export const dynamic = "force-dynamic";
@@ -16,6 +18,20 @@ export default async function RoomPage({ params }) {
 
   const tasks = await getTasksForAgent(room.agent);
   const adapter = getAdapter(room.agent);
+
+  // Phase 4: resolve every dependency referenced by any task in this room
+  // — a dependency can belong to a different agent's room, so this is a
+  // separate fetch, not reused from `tasks` above.
+  const allDepIds = [...new Set(tasks.flatMap(t => t.dependencies || []))];
+  const depsById = await getTasksByIds(allDepIds);
+
+  const taskExtras = Object.fromEntries(tasks.map(t => [
+    t.id,
+    {
+      dependencyContext: buildDependencyContext(t, depsById),
+      suggestion: t.status === "completed" ? suggestNextAction(t) : null
+    }
+  ]));
   const current = tasks.find(t => t.status === "running" || t.status === "queued");
   const lastDone = [...tasks].reverse().find(t => t.status === "completed");
 
@@ -53,7 +69,14 @@ export default async function RoomPage({ params }) {
               <h3>🗂️ Task History (live)</h3>
               {tasks.length === 0
                 ? <div className="note">No requests logged yet for {room.agent}.</div>
-                : tasks.map(t => <TaskCard key={t.id} task={t} />)
+                : tasks.map(t => (
+                    <TaskCard
+                      key={t.id}
+                      task={t}
+                      dependencyContext={taskExtras[t.id].dependencyContext}
+                      suggestion={taskExtras[t.id].suggestion}
+                    />
+                  ))
               }
             </div>
 
