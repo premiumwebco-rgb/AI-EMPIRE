@@ -1,0 +1,32 @@
+{
+  "collection_id": "willow-retirement-grad",
+  "stage": "research",
+  "date": "2026-08-10",
+  "trigger_reason": "new_opportunity",
+  "source_collection_id": null,
+  "niche": "Personalized retirement tote bags — primary recommendation. Personalized graduation tote bags exist as a real, active sub-category but are a weaker fit than retirement for this shop's exact format (see WHY THIS NICHE and COMPETITION LEVEL below); included as a secondary, lower-confidence option rather than an equal co-niche.",
+  "target_customer": "Primary (retirement): coworkers, friends, and family buying a personalized farewell/well-wishes gift for a retiree — competitor listing titles skew heavily toward 'gift for her / mom / grandma / coworker / teacher / nurse', i.e. the buyer is usually not the retiree themselves. Secondary (graduation): family members of a high-school or college graduate buying a keepsake bag, most commonly for female graduates based on observed listing titles ('for her', 'dorm essentials', 'coquette').",
+  "why_this_niche": "Real, sourced findings from live web search (2026-08-10), not estimated: (1) Retirement personalized totes are an active, multi-seller Etsy category today with visible 'Star Seller' badges on several listings (https://www.etsy.com/market/retirement_tote_bag , https://www.etsy.com/listing/1730524364/personalized-retirement-tote-bag-gift) — Star Seller status on Etsy requires a real sustained history of 5-star reviews and on-time shipping, which is a genuine demand/fulfillment-quality signal, not just listing volume. A directly comparable competitor listing (https://www.etsy.com/listing/4476304705/custom-retirement-tote-bag-retired-bag) is priced at $24.86 — within $1.13 of WillowGiftWorks' existing Halloween tote price ($25.99), meaning the current pricing model likely transfers without rework. (2) Graduation gifting is a much larger overall market — the National Retail Federation projects $7.2B in US graduation gift spending in 2026, averaging ~$177/graduate (per https://blog.tribute.co/best-graduation-gifts-2026/) — but multiple independent 2026 graduation-gift-trend roundups (Forbes Vetted, Things Remembered, Shutterfly, LifeSong Milestones, Apripex) name mugs, jewelry, photo books, blankets, sashes, and graduation dolls as the leading personalized formats; tote bags were not called out as a top trend in any of these broader guides even though real competing tote listings do exist on Etsy (https://www.etsy.com/listing/1381031010/personalized-graduation-tote-bag-custom). This suggests graduation totes are a real but comparatively minor slice of a much bigger category, not a leading format the way personalized totes already are for Halloween/retirement gifting. (3) Direct attempts to fetch individual Etsy listing pages for exact sold-counts/review-counts returned HTTP 403 (Etsy blocks non-browser fetches) — sold-count and review-count precision is not obtainable through this agent's current tools; competition-level and demand-signal conclusions above rely on search-result snippets and aggregate market-page presence only, not verified per-listing sales data. This is a real, disclosed limitation, not an oversight.",
+  "product_ideas": [
+    "Personalized retirement tote bag — customer's chosen name + retirement year (e.g. 'Retired Est. 2026'), same canvas tote format and $9.48 production cost baseline as the existing Halloween line",
+    "Personalized retirement tote bag — humorous/novelty phrase variant (e.g. a 'new chapter' or travel/leisure theme), matching the tone competitors are already selling successfully",
+    "Personalized graduation tote bag — custom name + graduation year, positioned as a secondary/lower-priority test rather than a primary launch item given the trend evidence above"
+  ],
+  "keywords": [
+    "personalized retirement tote bag",
+    "retirement gift bag",
+    "retired est tote bag",
+    "custom retirement tote",
+    "retirement gift for coworker",
+    "personalized graduation tote bag",
+    "custom name graduation gift",
+    "grad tote bag"
+  ],
+  "competition_level": "Retirement: moderate, not saturated — multiple active sellers with Star Seller status confirms real, repeatable sales, but the search results did not surface an obvious single dominant/runaway listing the way a saturated category would; a differentiated but on-trend design (matching the existing personalization format) has a plausible opening. Graduation: higher overall category competition (much larger buyer pool per the NRF spend figure) but tote bags specifically appear to be a minority format within it, competing against better-established personalized formats (mugs, photo books, jewelry) for the same buyer's attention — treat as the lower-confidence of the two ideas. Both assessments are based on Etsy search-result presence and third-party gift-trend articles only; no licensed seller-analytics or sales-volume API was available (Scout has no marketplace_seller_analytics_api per data/agent-adapters.json — this is a stated, not hidden, limitation).",
+  "marketing_angles": [
+    "Retirement: 'a personalized send-off gift' — positioned for the coworker/friend buyer, not the retiree, matching how competitors already frame their listings",
+    "Retirement: reuse the exact personalization mechanic (custom name) already proven and operational for the Halloween line — near-zero new production process risk",
+    "Graduation (secondary): 'a keepsake bag for move-in/dorm use', competing on practicality rather than trying to out-trend mugs/jewelry/photo-book gifts"
+  ],
+  "next_action": "proceed_to_design"
+}
