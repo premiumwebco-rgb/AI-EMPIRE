@@ -68,6 +68,18 @@ collections before this rule existed — see
 `docs/agent-feedback-loop.md` §3, Stage 2. `qa_status: failed` blocks
 Listing from starting.
 
+Design has no rendering capability of its own (`headless_render_qa` is
+not integrated — see `data/agent-adapters.json`). The render/mockup
+check may be performed by a human outside Design's registered tools
+(e.g. a real print-provider mockup/preview tool) — this satisfies the
+gate exactly as a human-confirmed check already satisfies Printify's
+`status: verified` and Tally's manual data entry. Whoever performs it,
+`qa_notes` must record honestly what was actually checked and by
+whom/what. Design's own `described_safezone_check` is an arithmetic
+comparison only — useful as a preliminary check, but it is never a
+render verification, and Design must never describe it as one or use
+it alone as the basis for `qa_status: passed`.
+
 ## FAILURE CONDITIONS
 
 - **QA failure**: safe-zone check fails → `qa_status: failed`,

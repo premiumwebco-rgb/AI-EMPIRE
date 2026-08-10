@@ -94,7 +94,7 @@
       ],
       "unavailable": [
         { "capability": "image_generation", "why": "no image/graphic-generation API is integrated", "report_instead": "execution_state: generated for a text concept; never executed or verified for a rendered image" },
-        { "capability": "headless_render_qa", "why": "no rendering pipeline is integrated", "report_instead": "qa_status based on the described/arithmetic check only — say so explicitly in qa_notes" }
+        { "capability": "headless_render_qa", "why": "no rendering pipeline is integrated", "report_instead": "qa_status: passed still requires a real render/mockup check against the actual print area; a human may perform it outside Design's registered tools (e.g. a real print-provider mockup tool) and Design records the result honestly in qa_notes, naming what was checked and by whom/what. described_safezone_check is arithmetic only, useful as a preliminary check, and must never be described as or substituted for the render verification." }
       ]
     },
     "output_contract": ["concepts", "qa_status", "next_action"],
