@@ -9,8 +9,17 @@ import { getAdapter } from "../../../lib/validate";
 import { buildDependencyContext } from "../../../lib/context";
 import { suggestNextAction } from "../../../lib/suggest";
 import { notFound } from "next/navigation";
+// Phase 4c: read-only mirror of data/state/missions.json — the real,
+// writable file — kept here only because Vercel's Root Directory is
+// castle-app/ and doesn't deploy sibling folders. Same convention as
+// lib/agent-adapters.json. Re-copy this file whenever the source changes;
+// nothing in the app writes to this copy.
+import missions from "../../../lib/missions.json";
 
 export const dynamic = "force-dynamic";
+
+const QUEST_STATUS = { in_progress: "attention", not_started: "unstaffed", deferred: "info", not_yet_defined: "unstaffed" };
+const QUEST_LABEL = { in_progress: "In Progress", not_started: "Not Started", deferred: "Deferred", not_yet_defined: "Not Yet Defined" };
 
 export default async function RoomPage({ params }) {
   const room = ROOMS.find(r => r.id === params.id);
@@ -67,6 +76,38 @@ export default async function RoomPage({ params }) {
                 <p style={{ fontSize: "0.85rem" }}><b>Accepted task types:</b> {adapter.accepted_task_types.join(", ")}</p>
                 <p style={{ fontSize: "0.85rem" }}><b>File scope:</b> {adapter.file_scope.join(", ")}</p>
                 <div className="note">Enforced, not just documented — see app/api/tasks/complete/route.js's file-scope check.</div>
+              </div>
+            )}
+
+            {room.agent === "Ember" && (
+              <div className="panel">
+                <h3>📜 Mission Board</h3>
+                <div className="note" style={{ marginBottom: 14 }}>
+                  Read from data/state/missions.json — as of {missions.last_updated}. Not live; updated when the founder/Ember edits that file.
+                </div>
+
+                <div style={{ marginBottom: 16 }}>
+                  <b>Main quest: </b>
+                  {missions.main_quest.title
+                    ? missions.main_quest.title
+                    : <span style={{ color: "var(--stone-400)" }}>No main quest set yet</span>}
+                  {missions.main_quest.note && <div className="task-meta" style={{ marginTop: 4 }}>{missions.main_quest.note}</div>}
+                </div>
+
+                {missions.side_quests.map(q => (
+                  <div key={q.id} style={{ marginBottom: 14, paddingBottom: 14, borderBottom: "1px dashed var(--border)" }}>
+                    <div className="task-top">
+                      <div className="task-cmd">{q.title}</div>
+                      <StatusPill status={QUEST_STATUS[q.status] || "unstaffed"} label={QUEST_LABEL[q.status] || q.status} />
+                    </div>
+                    <div className="task-meta" style={{ marginTop: 4 }}>
+                      Priority: {q.priority}{q.deadline ? ` · Deadline: ${q.deadline}` : ""} · Assigned: {q.assigned_agent}
+                    </div>
+                    <div className="bar" style={{ marginTop: 8 }}><i style={{ width: `${q.progress_pct}%` }} /></div>
+                    <div className="task-meta" style={{ marginTop: 4 }}>{q.progress_pct}% complete</div>
+                    {q.note && <div style={{ marginTop: 6, fontSize: "0.85rem" }}>{q.note}</div>}
+                  </div>
+                ))}
               </div>
             )}
 

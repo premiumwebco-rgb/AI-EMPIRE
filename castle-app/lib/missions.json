@@ -1,0 +1,88 @@
+{
+  "main_quest": {
+    "title": "",
+    "target": null,
+    "status": "not_yet_defined",
+    "note": "No specific revenue target has been set by the founder yet. Placeholder until defined — do not treat any number shown elsewhere as the real goal."
+  },
+  "side_quests": [
+    {
+      "id": "sq-01",
+      "title": "Set up Printify billing",
+      "priority": "high",
+      "deadline": null,
+      "assigned_agent": "founder",
+      "progress_pct": 75,
+      "status": "in_progress",
+      "expected_roi": "Unblocks order fulfillment — without this, the first real sale cannot ship.",
+      "note": "Re-verified 2026-08-07 directly in Printify: payment method added (Visa •••8389, exp 07/28) — confirmed. Default payment enabled — confirmed (only one card on file). Etsy connection active — confirmed (auto-sync healthy, last sync yesterday 11:06 PM, next sync within an hour, Approval: Automatic). Remaining: test fulfillment path — founder decided 2026-08-07 to skip a paid self-test order and let the first organic sale serve as the real fulfillment test instead. Watch the first order closely when it arrives."
+    },
+    {
+      "id": "sq-02",
+      "title": "Begin daily analytics logging",
+      "priority": "high",
+      "deadline": "2026-08-12",
+      "assigned_agent": "founder + Tally",
+      "progress_pct": 10,
+      "status": "in_progress",
+      "expected_roi": "Required before any real trend or weekly report is possible.",
+      "note": "1 baseline snapshot logged (launch day). Workflow: businesses/willowgiftworks-etsy/daily-analytics-workflow.md"
+    },
+    {
+      "id": "sq-03",
+      "title": "Launch 20 Etsy listings",
+      "priority": "medium",
+      "deadline": null,
+      "assigned_agent": "Listing (Maple)",
+      "progress_pct": 25,
+      "status": "in_progress",
+      "expected_roi": "More listings increases discoverability surface area, assuming each stays profitable.",
+      "note": "5 of 20 live (Halloween collection)."
+    },
+    {
+      "id": "sq-04",
+      "title": "Get first 10 sales",
+      "priority": "high",
+      "deadline": null,
+      "assigned_agent": "Marketing (Hazel) + Tally",
+      "progress_pct": 0,
+      "status": "not_started",
+      "expected_roi": "First real conversion evidence — currently insufficient data to know if the collection converts at all.",
+      "note": "0 of 10. No sales yet as of 2026-08-07 (day 2 post-launch)."
+    },
+    {
+      "id": "sq-05",
+      "title": "Test 3 niches",
+      "priority": "medium",
+      "deadline": null,
+      "assigned_agent": "Research (Scout)",
+      "progress_pct": 33,
+      "status": "in_progress",
+      "expected_roi": "Diversifies away from single-niche risk.",
+      "note": "Halloween live (1 of 3). Mom Humor paused at concept stage 1.2A (partial). Retirement/Graduation not started."
+    },
+    {
+      "id": "sq-06",
+      "title": "Backfill missing agent specs (Design, Listing, Marketing)",
+      "priority": "medium",
+      "deadline": null,
+      "assigned_agent": "founder",
+      "progress_pct": 0,
+      "status": "not_started",
+      "expected_roi": "Unblocks the Design Workshop, Listing Library, and Marketing Arena from being genuinely staffed instead of placeholder.",
+      "note": "agents/pod-design/, agents/etsy-listing/, agents/ads/ are still empty folders. See docs/system-upgrade-plan.md Phase 4."
+    },
+    {
+      "id": "sq-07",
+      "title": "Contact 50 businesses (collab/outreach)",
+      "priority": "low",
+      "deadline": null,
+      "assigned_agent": "unassigned",
+      "progress_pct": 0,
+      "status": "deferred",
+      "expected_roi": "Unclear — not yet tied to a specific business goal.",
+      "note": "Explicitly deprioritized in docs/system-upgrade-plan.md (outreach agent marked low priority, deferred)."
+    }
+  ],
+  "last_updated": "2026-08-07"
+}
